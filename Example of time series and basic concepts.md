@@ -11,6 +11,6 @@ nile_df <- data.frame(
   Year = as.integer(time(Nile)),
   Flow = as.numeric(Nile)
 )
-
-nile_df
+head(nile_df,5)
 ````
+<img width="155" height="116" alt="image" src="https://github.com/user-attachments/assets/76555cb0-a675-423e-bba3-0f260922fcc9" />

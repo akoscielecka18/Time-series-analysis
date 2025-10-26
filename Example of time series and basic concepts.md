@@ -5,7 +5,7 @@ It involves using statistical and mathematical models to understand the underlyi
 
 #### Example 
 “Nile” is a built-in data set in R that is often used in time series analysis. It shows the annual water flow in the Nile River (measured at Ashwan) from 1871 to 1970.
-```r
+````r
 data("Nile")  
 nile_df <- data.frame(
   Year = as.integer(time(Nile)),
@@ -13,4 +13,4 @@ nile_df <- data.frame(
 )
 
 nile_df
-```
+````

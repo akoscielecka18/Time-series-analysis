@@ -99,4 +99,24 @@ Next, a for loop simulates the growth of the population in successive generation
 Each bar on the ACF chart shows how similar the observations are to each other. 
 - If the bar is high and positive (going up), it means a positive correlation
 - if the bar is negative (going down), it means a negative correlation.
+  
 A positive correlation means that successive values tend to move in the same direction, while a negative correlation means they move in opposite directions. 
+
+### Classical decomposition model
+
+````r
+n<-22*12
+cycl<-ts(log(1:n) + cos(2*pi*1:n/12) + sin(2*pi*1:n/12/5)+rnorm(1:n, sd=1/2),start=c(2001,1),end = c(2022,12),frequency = 12)
+
+par(mfrow=c(2,1),mar=c(4,4,.1,1))
+plot(cycl, col="blue",ylab=NULL); abline(h=mean(cycl),lty=2); 
+acf(cycl,  lag.max=2*60, ci=.95, main=" ")
+````
+<img width="1205" height="889" alt="image" src="https://github.com/user-attachments/assets/01095f59-8bbd-4f08-8756-11ae747af79c" />
+The code presents a classic model of time series decomposition, in which the value of the observation at time
+t is the sum of three elements: the trend, the cyclical component, and the random component.
+
+The time series contains both a trend and a seasonal component, so it is not a stationary process. The ACF plot shows strong and periodically repeating autocorrelations, confirming the presence of cyclicality and the absence of white noise characteristics.
+
+
+

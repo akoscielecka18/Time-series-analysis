@@ -38,3 +38,20 @@ acf(chi2WN,  lag.max=40, ci=.95, main=" ") #
 Here we have white noise, because each observation is independent of the others, but it is not normal, only coming from a chi-square distribution. Again, we generate 200 random numbers from the chi2 distribution and subtract 2 from the mean so that it equals 0. The distribution is asymmetric, i.e., skewed. 
 
 The top graph shows that the data jumps randomly without any trend or seasonality. In the bottom graph, we can see that almost all bars are between the blue lines, there is no clear pattern, i.e., there is no autocorrelation, which means that despite the non-normal distribution, the data are independent over time. The process is stationary because the mean and variance are constant over time. 
+
+
+### Increasing variance
+
+````r
+UU<-ts(runif(100,min=-1,max=1)) 
+UU<-UU*c(sqrt(1:100)) 
+
+par(mfrow=c(2,1),mar=c(4,4,.1,1))
+plot(UU, col="2022",ylab=NULL); abline(h=mean(UU),lty=2); 
+acf(UU,  lag.max=40, ci=.95, main=" ")
+````
+<img width="1197" height="867" alt="image" src="https://github.com/user-attachments/assets/4c711a34-d349-43f0-9d84-500d1ee49c25" />
+
+We generate 100 random values from a uniform distribution on the interval (-1,1). From the basic properties, we know that the mean of this distribution is 0 and the variance is 1/3 for each variable. However, at this point, UU*sqrt(1:100) multiplies each subsequent observation by an increasingly larger number.
+The conclusion is that the process has variable variance over time (the further in the series, the greater the dispersion), i.e., it is not stationary.
+

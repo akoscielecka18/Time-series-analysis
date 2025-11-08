@@ -21,4 +21,20 @@ The first high bar at lag = 0 is always 1, because each observation is 100% corr
 The blue lines are confidence limits (e.g., 95%). If the bar is inside these lines, it means that the correlation is small and statistically insignificant. 
 Based on the graph, we can conclude that there is no significant relationship between successive observations over time. 
 
+### “chi-squared” noise
 
+````r
+chi2WN<- ts(rchisq(200,df=2 )) 
+chi2WN<-chi2WN-2  
+
+par(mfrow=c(2,1),mar=c(4,4,.1,1))
+plot(chi2WN, col="navyblue",ylab=NULL); abline(h=mean(chi2WN),lty=2); 
+acf(chi2WN,  lag.max=40, ci=.95, main=" ") #
+````
+<img width="1204" height="877" alt="image" src="https://github.com/user-attachments/assets/4ba23b73-e9e7-423b-81c9-fca2d4c4d329" />
+
+
+
+Here we have white noise, because each observation is independent of the others, but it is not normal, only coming from a chi-square distribution. Again, we generate 200 random numbers from the chi2 distribution and subtract 2 from the mean so that it equals 0. The distribution is asymmetric, i.e., skewed. 
+
+The top graph shows that the data jumps randomly without any trend or seasonality. In the bottom graph, we can see that almost all bars are between the blue lines, there is no clear pattern, i.e., there is no autocorrelation, which means that despite the non-normal distribution, the data are independent over time. The process is stationary because the mean and variance are constant over time. 

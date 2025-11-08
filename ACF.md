@@ -119,4 +119,21 @@ t is the sum of three elements: the trend, the cyclical component, and the rando
 The time series contains both a trend and a seasonal component, so it is not a stationary process. The ACF plot shows strong and periodically repeating autocorrelations, confirming the presence of cyclicality and the absence of white noise characteristics.
 
 
+### Seasonalty of variance
+
+````r
+n<-21*12+9
+cycl<-ts(rnorm(1:n, sd=1.5+cos(2*pi*1:n/48)),start=c(2001,1),end = c(2022,9),frequency = 12)
+
+par(mfrow=c(2,1),mar=c(4,4,.1,1))
+plot(cycl, col="seagreen",ylab=NULL); abline(h=mean(cycl),lty=2); 
+acf(cycl,  lag.max=2*48, ci=.95, main=" ")
+````
+
+<img width="1198" height="867" alt="image" src="https://github.com/user-attachments/assets/caf52640-242e-44b0-af6d-7880d0f78718" />
+
+The series has periodically changing variance (4-year cycle), which means that it is not stationary, even though the ACF of levels suggests no autocorrelation.
+
+
+
 

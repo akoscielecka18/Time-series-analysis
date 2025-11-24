@@ -13,3 +13,7 @@ where:
 - \(q\) is the order of the process.
 
 In an MA(q) model, the dependence structure comes from the past error terms rather than from past values of the series itself. The process is stationary, and its autocorrelation function (ACF) is nonzero only up to lag \(q\) and cuts off to zero for higher lags, which is a key property used for identifying MA models in practice.
+
+````r
+sdfg
+````
